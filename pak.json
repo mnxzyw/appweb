@@ -1,12 +1,14 @@
 {
-    "name": "http",
-    "description": "Embedthis Http Library",
-    "title": "Embedthis Http",
-    "version": "7.0.0",
+    "name": "appweb",
+    "description": "Embedthis Appweb Embedded Web Server",
+    "title": "Embedthis Appweb",
+    "version": "7.0.3",
     "keywords": [
+        "appweb",
         "http",
         "webserver"
     ],
+    "homepage": "https://embedthis.com/appweb/",
     "author": {
         "name": "Embedthis Software",
         "email": "dev@embedthis.com",
@@ -14,10 +16,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/embedthis/http.git"
+        "url": "git://github.com/embedthis/appweb.git"
     },
     "bugs": {
-        "url": "http://github.com/embedthis/http/issues"
+        "email": "dev@embedthis.com",
+        "url": "http://github.com/embedthis/appweb/issues"
     },
     "licenses": [
         {
@@ -30,26 +33,32 @@
         }
     ],
     "dependencies": {
-        "certs": "~0.1",
+        "http": "~7",
+        "makerom": "~0.3",
         "mpr": "~7",
-        "mpr-mbedtls": "~0.5",
         "osdep": "~0.9",
         "pcre": "~1.0",
-        "ssl": "~0.9"
+        "ssl": "~0.9",
+        "watchdog": "~0.2"
     },
     "optionalDependencies": {
-        "mpr-openssl": "~0.5"
+        "appweb-ejscript": "~0.2",
+        "appweb-php": "~0.1",
+        "certs": "~0.1",
+        "ejscript": "~2.7",
+        "esp": ">=7.0",
+        "mpr-matrixssl": "~0.3",
+        "mpr-mbedtls": "~2",
+        "mpr-openssl": "~0.5",
+        "sqlite": "~3"
     },
     "devDependencies": {
         "makeme": ">=0.9.0",
-        "pak": ">=0.11.0"
+        "pak": ">=0.11.1"
     },
     "files": [
         "dist/",
         "doc/api/"
     ],
-    "pak": {
-        "import": true,
-        "origin": "embedthis/http"
-    }
+    "import": true
 }

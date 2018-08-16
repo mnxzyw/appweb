@@ -61,6 +61,11 @@
     #define ME_CPU_ARCH ME_CPU_ARM
     #define CPU_ENDIAN ME_LITTLE_ENDIAN
 
+#elif defined(__arm64__) || defined(__aarch64__)
+    #define ME_CPU "arm"
+    #define ME_CPU_ARCH ME_CPU_ARM
+    #define CPU_ENDIAN ME_LITTLE_ENDIAN
+
 #elif defined(__x86_64__) || defined(_M_AMD64)
     #define ME_CPU "x64"
     #define ME_CPU_ARCH ME_CPU_X64
@@ -235,7 +240,7 @@
 
 #endif
 
-#if __WORDSIZE == 64 || __amd64 || __x86_64 || __x86_64__ || _WIN64 || __mips64
+#if __WORDSIZE == 64 || __amd64 || __x86_64 || __x86_64__ || _WIN64 || __mips64 || __arch64__ || __arm64__
     #define ME_64 1
     #define ME_WORDSIZE 64
 #else
@@ -396,7 +401,6 @@
 #if ME_UNIX_LIKE
     #include    <sys/ioctl.h>
     #include    <sys/mman.h>
-    #include    <sys/poll.h>
     #include    <sys/resource.h>
     #include    <sys/select.h>
     #include    <sys/time.h>
@@ -404,6 +408,7 @@
     #include    <sys/utsname.h>
     #include    <sys/uio.h>
     #include    <sys/wait.h>
+    #include    <poll.h>
     #include    <unistd.h>
 #endif
     #include    <time.h>
@@ -1252,8 +1257,8 @@ extern "C" {
 #endif
 
 #if LINUX
-    extern int pthread_mutexattr_gettype (__const pthread_mutexattr_t *__restrict __attr, int *__restrict __kind) __THROW;
-    extern int pthread_mutexattr_settype (pthread_mutexattr_t *__attr, int __kind) __THROW;
+    extern int pthread_mutexattr_gettype (__const pthread_mutexattr_t *__restrict __attr, int *__restrict __kind);
+    extern int pthread_mutexattr_settype (pthread_mutexattr_t *__attr, int __kind);
     extern char **environ;
 #endif
 

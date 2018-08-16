@@ -4081,7 +4081,7 @@ PUBLIC bool httpIsAuthenticated(HttpConn *conn);
  */
 PUBLIC bool httpLogin(HttpConn *conn, cchar *username, cchar *password);
 
-#if DEPRECATE
+#if DEPRECATE || 1
 #define httpLoggedIn httpIsAuthenticated
 #endif
 
@@ -4523,7 +4523,7 @@ typedef struct HttpRoute {
     ssize           startSegmentLen;        /**< Prefix length */
 
     MprJson         *config;                /**< Configuration file content */
-    cchar           *mode;                  /**< Application run mode (debug|release) */
+    cchar           *mode;                  /**< Application run profile mode (debug|release) */
 
     cchar           *database;              /**< Name of database for route */
     cchar           *responseFormat;        /**< Client response format */

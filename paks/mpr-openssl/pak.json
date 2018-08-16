@@ -1,0 +1,41 @@
+{
+    "name": "mpr-openssl",
+    "title": "OpenSSL support",
+    "description": "OpenSSL Support for the MPR",
+    "version": "0.5.3",
+    "keywords": [
+        "me",
+        "ssl",
+        "openssl"
+    ],
+    "author": {
+        "name": "Embedthis Software",
+        "email": "dev@embedthis.com",
+        "url": "https://embedthis.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/embedthis/mpr-openssl.git"
+    },
+    "bugs": {
+        "url": "http://github.com/embedthis/mpr-openssl/issues"
+    },
+    "licenses": [
+        {
+            "type": "GPL",
+            "url": "http://www.gnu.org/licenses/gpl-2.0.html"
+        },
+        {
+            "type": "Commercial",
+            "url": "https://embedthis.com/licensing/"
+        }
+    ],
+    "devDependencies": {
+        "makeme": ">=0.9.2"
+    },
+    "export": [
+        "*.c",
+        "*.me"
+    ],
+    "origin": "embedthis/mpr-openssl"
+}

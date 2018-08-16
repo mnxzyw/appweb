@@ -1,14 +1,13 @@
 {
-    "name": "appweb",
-    "description": "Embedthis Appweb Embedded Web Server",
-    "title": "Embedthis Appweb",
-    "version": "7.0.1",
+    "name": "esp",
+    "description": "Embedthis ESP, the amazingly fast C-Language web framework",
+    "title": "Embedthis ESP",
+    "version": "7.0.2",
     "keywords": [
-        "appweb",
-        "http",
-        "webserver"
+        "esp",
+        "package"
     ],
-    "homepage": "https://embedthis.com/appweb/",
+    "homepage": "https://embedthis.com/esp",
     "author": {
         "name": "Embedthis Software",
         "email": "dev@embedthis.com",
@@ -16,11 +15,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/embedthis/appweb.git"
+        "url": "git://github.com/embedthis/esp.git"
     },
     "bugs": {
-        "email": "dev@embedthis.com",
-        "url": "http://github.com/embedthis/appweb/issues"
+        "url": "http://github.com/embedthis/esp/issues"
     },
     "licenses": [
         {
@@ -34,33 +32,29 @@
     ],
     "dependencies": {
         "http": "~7",
-        "makerom": "~0.3",
         "mpr": "~7",
+        "mpr-version": "~0.1",
         "osdep": "~0.9",
-        "pcre": "~1.0",
+        "pcre": "~1.0"
+    },
+    "optionalDependencies": {
+        "certs": "~0.1",
+        "mpr-matrixssl": "~0.3",
+        "mpr-mbedtls": "~2",
+        "mpr-nanossl": "~0.3",
+        "mpr-openssl": "~0.5",
+        "sqlite": "~3",
         "ssl": "~0.9",
         "watchdog": "~0.2"
     },
-    "optionalDependencies": {
-        "appweb-ejscript": "~0.2",
-        "appweb-php": "~0.1",
-        "certs": "~0.1",
-        "ejscript": "~2.7",
-        "esp": "~6.2",
-        "mpr-matrixssl": "~0.3",
-        "mpr-mbedtls": "~0.5",
-        "mpr-openssl": "~0.5",
-        "sqlite": "~1.0"
-    },
     "devDependencies": {
         "makeme": ">=0.9.0",
-        "pak": ">=0.11.1"
+        "pak": ">=0.11.0"
     },
     "files": [
         "dist/",
         "doc/api/"
     ],
-    "pak": {
-        "import": true
-    }
+    "import": true,
+    "origin": "embedthis/esp"
 }
