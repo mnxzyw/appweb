@@ -29,15 +29,14 @@ static char *getpass(char *prompt);
 
 PUBLIC int main(int argc, char *argv[])
 {
-    Mpr         *mpr;
     MprBuf      *buf;
     HttpRoute   *route;
     HttpAuth    *auth;
     char        *password, *authFile, *username, *encodedPassword, *realm, *cp, *roles, *cipher;
     int         i, errflg, nextArg;
 
-    mpr = mprCreate(argc, argv, 0);
-    programName = mprGetAppName(mpr);
+    mprCreate(argc, argv, 0);
+    programName = mprGetAppName();
 
     authFile = 0;
     username = 0;
@@ -71,7 +70,7 @@ PUBLIC int main(int argc, char *argv[])
                     authFile = argv[i];
                     break;
                 }
-                
+
             } else if (smatch(cp, "password") || smatch(cp, "p")) {
                 if (++i == argc) {
                     errflg++;
@@ -93,7 +92,7 @@ PUBLIC int main(int argc, char *argv[])
     if (errflg) {
         printUsage(programName);
         exit(2);
-    }   
+    }
     realm = argv[nextArg++];
     username = argv[nextArg++];
 
@@ -205,7 +204,7 @@ static char *getpass(char *prompt)
 }
 
 #endif /* ME_WIN_LIKE */
- 
+
 static void printUsage(cchar *programName)
 {
     mprEprintf("usage: %s [--cipher cipher] [--file path] [--password password] realm user roles...\n"
