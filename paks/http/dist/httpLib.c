@@ -5220,10 +5220,14 @@ static void parseSslProtocols(HttpRoute *route, cchar *key, MprJson *prop)
             bit = MPR_PROTO_SSLV3;
         } else if (scaselessmatch(value, "tlsv1") || scaselessmatch(value, "tls")) {
             bit = MPR_PROTO_TLSV1;
+        } else if (scaselessmatch(value, "tlsv1.0")) {
+            bit = MPR_PROTO_TLSV1_0;
         } else if (scaselessmatch(value, "tlsv1.1")) {
             bit = MPR_PROTO_TLSV1_1;
         } else if (scaselessmatch(value, "tlsv1.2")) {
             bit = MPR_PROTO_TLSV1_2;
+        } else if (scaselessmatch(value, "tlsv1.3")) {
+            bit = MPR_PROTO_TLSV1_3;
         }
         if (clear) {
             mask &= ~bit;
@@ -5682,7 +5686,7 @@ PUBLIC HttpConn *httpCreateConn(HttpEndpoint *endpoint, MprDispatcher *dispatche
     conn->port = -1;
     conn->retries = HTTP_RETRIES;
     conn->endpoint = endpoint;
-    conn->lastActivity = HTTP->now;
+    conn->lastActivity = HTTP->now = mprGetTicks();
     conn->ioCallback = httpIOEvent;
 
     if (endpoint) {
@@ -5888,7 +5892,7 @@ static void commonPrep(HttpConn *conn)
         mprRemoveEvent(conn->timeoutEvent);
         conn->timeoutEvent = 0;
     }
-    conn->lastActivity = conn->http->now;
+    conn->lastActivity = conn->http->now = mprGetTicks();
     conn->error = 0;
     conn->errorMsg = 0;
     conn->state = 0;
@@ -17650,10 +17654,9 @@ PUBLIC char *httpGetExt(HttpConn *conn)
 }
 
 
-//  FUTURE - can this just use the default compare
 static int compareLang(char **s1, char **s2)
 {
-    return scmp(*s1, *s2);
+    return scmp(*s2, *s1);
 }
 
 
@@ -17676,7 +17679,7 @@ PUBLIC HttpLang *httpGetLanguage(HttpConn *conn, MprHash *spoken, cchar *default
     list = mprCreateList(-1, MPR_LIST_STABLE);
     if ((accept = httpGetHeader(conn, "Accept-Language")) != 0) {
         for (tok = stok(sclone(accept), ",", &nextTok); tok; tok = stok(nextTok, ",", &nextTok)) {
-            language = stok(tok, ";", &quality);
+            language = stok(tok, ";q=", &quality);
             if (quality == 0) {
                 quality = "1";
             }
